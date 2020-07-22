@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LC.Data
+namespace LC.Core.Domain
 {
     public interface ISelfEntityMappingConfiguration
     {

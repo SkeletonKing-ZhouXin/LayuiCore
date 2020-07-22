@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LC.Core\LC.Core.csproj" />
+    <ProjectReference Include="..\LC.Data\LC.Data.csproj" />
+    <ProjectReference Include="..\LC.Services\LC.Services.csproj" />
   </ItemGroup>
 
 </Project>

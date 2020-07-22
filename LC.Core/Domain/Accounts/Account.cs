@@ -1,7 +1,7 @@
 ﻿using LC.Core;
 using System;
 
-namespace LC.Core.Domain
+namespace LC.Core.Domain.Accounts
 {
     /// <summary>
     /// 账号
