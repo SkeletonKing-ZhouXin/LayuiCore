@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace LC.Services
 {
-    public class AccountService: IAccountService
+    public class AccountService : IAccountService
     {
         private readonly IRepository<Account> _accountRepository;
 
@@ -16,9 +16,24 @@ namespace LC.Services
             this._accountRepository = accountRepository;
         }
 
+        //private IQueryable<Account> GetQueryable()
+        //{
+        //    return _accountRepository.Table;
+        //}
+
+        public Account GetAccount(string accountName)
+        {
+            Account account = null;
+
+            account = _accountRepository.IQueryableTable.FirstOrDefault();
+
+            return account;
+
+        }
+
         public IList<Account> GetAccounts()
         {
-            return _accountRepository.Table.ToList();
+            return _accountRepository.IQueryableTable.ToList();
         }
     }
 }

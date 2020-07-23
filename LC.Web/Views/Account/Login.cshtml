@@ -1,6 +1,6 @@
 ﻿
 @{
-Layout=null;
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -14,23 +14,38 @@ Layout=null;
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="~/Content/CSS/font.css">
     <link rel="stylesheet" href="~/Content/CSS/xadmin.css">
-    <link rel="stylesheet"  href="~/Content/Scripts/layui/css/layui.css"/>
     <script type="text/javascript" src="~/Content/Scripts/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="~/Content/Scripts/js/xadmin.js"></script>
-    <script type="text/javascript" src="~/Content/Scripts/layui/layui.all.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/layui/layui.js"></script>
 </head>
 <body class="login-bg">
     <div class="login">
         <div class="message">管理员登录</div>
         <div id="darkbannerwrap"></div>
-
-        <form method="post" class="layui-form">
-            <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
-            <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
-            <hr class="hr15">
-            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
-            <hr class="hr20">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <input name="accountname" placeholder="账号" type="text" lay-verify="required" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+            </div>
+            <div class="layui-row">
+                <div class="layui-input-inline">
+                    <input name="verifycode" lay-verify="required" type="text" placeholder="验证码" class="layui-input">
+                </div>
+                <img id="valiCode" src="@Url.Action("GetValidateCode", "ValidateCode", new { v = DateTime.Now.Ticks })" alt="验证码" />
+            </div>
+            <div class="layui-form-item">
+            </div>
+            <div class="layui-form-item">
+                <input type="checkbox" name="donotlogin" title="5天内免登录">
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit lay-filter="login">登录</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
         </form>
     </div>
 
@@ -38,21 +53,51 @@ Layout=null;
         $(function () {
             layui.use('form', function () {
                 var form = layui.form;
-                // layer.msg('玩命卖萌中', function(){
-                //   //关闭后的操作
-                //   });
                 //监听提交
                 form.on('submit(login)', function (data) {
-                    // alert(888)
-                    layer.msg(JSON.stringify(data.field), function () {
-                        location.href = 'index.html'
+
+                    var postData = data.field;
+
+                    //由于layui的checkbox如果所有的选项都没有选中，则传入的data中不会有相应的字段名称，所有只有用undefined判断是否存在字段名称来判断是否选中
+                    if (data.field.donotlogin != undefined) {
+                        data.field.donotlogin = true;
+                    }
+                    else {
+                        data.field.donotlogin = false;
+                    }
+
+                    var aa = "@Url.Action("Account","Login")";
+
+                  $.ajax({
+                        type: "POST",
+                        url: "/Account/Login",
+                        data: postData,
+                        success: function (result) {
+                            if (result.success == true) {
+                                layer.alert("数据删除成功");
+                            }
+                            else {
+                                if (result.msg != '') {
+                                    layer.alert(result.msg);
+                                }
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            layer.alert("数据删除发生异常")
+                        },
+                        traditional: true
                     });
+
                     return false;
                 });
             });
+
+            //注册验证码点击事件
+            $('#valiCode').off('click').on('click', function () {
+                this.src = '@Url.Action("GetValidateCode", "ValidateCode")?v=' + new Date().getTime();
+            });
+
         })
-
-
     </script>
 
 </body>

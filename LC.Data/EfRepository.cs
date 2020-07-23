@@ -194,6 +194,18 @@ namespace LC.Data
         }
 
         /// <summary>
+        /// Get a QueryableTable
+        /// </summary>
+        public virtual IQueryable<T> IQueryableTable
+        {
+            get
+            {
+                return this.Table;
+            }
+        }
+
+
+        /// <summary>
         /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
         /// </summary>
         public virtual IQueryable<T> TableNoTracking

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.Data", "LC.Data\LC.Data.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.Services", "LC.Services\LC.Services.csproj", "{5D37B898-1153-42D9-B4EC-4154C7EF83E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LC.Web.Framework", "LC.Web.Framework\LC.Web.Framework.csproj", "{C28B66A7-9ED2-422D-BF92-DD9B6A7D5FFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.Web.Framework", "LC.Web.Framework\LC.Web.Framework.csproj", "{C28B66A7-9ED2-422D-BF92-DD9B6A7D5FFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

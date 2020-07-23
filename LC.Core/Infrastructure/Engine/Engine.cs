@@ -40,8 +40,8 @@ namespace LC.Core.Infrastructure.Engine
         {
             //Application Initialize
             var provider = services.BuildServiceProvider();
-            var hostingEnvironment = provider.GetRequiredService<IHostingEnvironment>();
-            CommonHelper.BaseDirectory = hostingEnvironment.ContentRootPath;
+            var webHostEnvironment = provider.GetRequiredService<IWebHostEnvironment>();
+            CommonHelper.BaseDirectory = webHostEnvironment.ContentRootPath;
             //Plugin Initialize
 
         }

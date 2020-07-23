@@ -10,5 +10,9 @@ namespace LC.Services
     {
 
         IList<Account> GetAccounts();
+
+
+        Account GetAccount(string accountName);
+
     }
 }
