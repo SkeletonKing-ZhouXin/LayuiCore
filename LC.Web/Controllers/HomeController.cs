@@ -8,10 +8,11 @@ using Microsoft.Extensions.Logging;
 using LC.Web.Models;
 using LC.Services;
 using Newtonsoft.Json;
+using LC.Web.Framework.Controllers;
 
 namespace LC.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IAccountService _accountService;
 
@@ -28,6 +29,7 @@ namespace LC.Web.Controllers
         }
         */
 
+        [UserAuthorizeAttribute]
         public IActionResult Index()
         {
             var data = _accountService.GetAccounts();

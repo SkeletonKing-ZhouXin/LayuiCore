@@ -36,6 +36,6 @@ namespace LC.Core.Domain.Accounts
         /// <summary>
         /// 账号类别
         /// </summary>
-        public int AccountType { get; set; }
+        public int? AccountType { get; set; }
     }
 }

@@ -66,15 +66,14 @@
                         data.field.donotlogin = false;
                     }
 
-                    var aa = "@Url.Action("Account","Login")";
-
                   $.ajax({
                         type: "POST",
                         url: "/Account/Login",
                         data: postData,
                         success: function (result) {
                             if (result.success == true) {
-                                layer.alert("数据删除成功");
+                                layer.alert("登录成功");
+                                window.location.href = "/Home/Index";
                             }
                             else {
                                 if (result.msg != '') {

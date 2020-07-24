@@ -1,5 +1,6 @@
 ﻿using LC.Core.Infrastructure.Engine;
 using LC.Core.Infrastructure.Startup;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,10 @@ namespace LC.Web.Framework.Infrastructure.Startup
             //});
 
             services.AddSession(); //注入session
+
+            //注册Cookie认证服务
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
         }
 
         public void Configure(IApplicationBuilder app)
@@ -44,9 +49,11 @@ namespace LC.Web.Framework.Infrastructure.Startup
 
             app.UseRouting();
 
-            //app.UseAuthentication();
-
+            //使用认证
             app.UseAuthorization();
+
+            //授权
+            app.UseAuthentication();
 
             app.UseSession();
 

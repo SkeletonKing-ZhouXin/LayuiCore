@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace LC.Web.Controllers
 {
-    [Authorize]
     public class BaseController : Controller
     {
         protected Dictionary<string, object> GetResult(bool success, string message = null, object data = null)
